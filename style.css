@@ -1,0 +1,4 @@
+body,html{margin:0;height:100%;background:black;color:#00ff9c;font-family:Consolas,monospace;overflow:hidden}
+canvas{position:fixed;top:0;left:0}
+.terminal{position:absolute;bottom:20px;left:20px;width:420px;height:260px;
+background:rgba(0,0,0,.7);border:1px solid #00ff9c;padding:15px;overflow:hidden}

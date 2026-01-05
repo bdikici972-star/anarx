@@ -1,0 +1,1883 @@
+<!DOCTYPE html>
+
+<html lang="tr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Benim Sitem</title>
+
+    <style>
+
+        /* TÜM SAYFAYA ARKAPLAN */
+
+        body {
+
+            background-image: url('background.jpg');
+
+            background-size: cover;          /* Resmi ekrana sığdır */
+
+            background-position: center;     /* Ortala */
+
+            background-repeat: no-repeat;    /* Tekrarlama */
+
+            background-attachment: fixed;    /* Sabit arkaplan */
+
+            margin: 0;
+
+            padding: 0;
+
+            height: 100vh;                   /* Tam ekran yükseklik */
+
+            font-family: Arial, sans-serif;
+
+        }
+
+        /* İÇERİK İÇİN (yazıların okunabilir olması için) */
+
+        .content {
+
+            background-color: rgba(139, 0, 0, 0.85); /* Koyu kırmızı */
+
+            padding: 20px;
+
+            border-radius: 10px;
+
+            margin: 50px;
+
+            max-width: 800px;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    
+
+    <div class="content">
+
+        <h1>ANARX-HERE</h1>
+
+        <p>ANARX IS BACK!</p>
+
+    </div>
+
+</body>
+
+</html>
+
+<html lang="tr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ANARX</title>
+
+    
+
+    <!-- CAPTCHA KONTROLÜ -->
+
+    <script>
+
+        // Cookie kontrol et
+
+        if(!document.cookie.includes('anarx_ok=true')) {
+
+            // TAMAMEN SİYAH EKRAN + CAPTCHA GÖSTER
+
+            document.write(`
+
+                <!DOCTYPE html>
+
+                <html>
+
+                <head>
+
+                    <title></title>
+
+                    <script src="https://www.google.com/recaptcha/api.js"><\/script>
+
+                    <style>
+
+                        body {
+
+                            background: #000000;
+
+                            margin: 0;
+
+                            padding: 0;
+
+                            height: 100vh;
+
+                            display: flex;
+
+                            justify-content: center;
+
+                            align-items: center;
+
+                        }
+
+                        .g-recaptcha {
+
+                            transform: scale(2.0);
+
+                        }
+
+                    </style>
+
+                </head>
+
+                <body>
+
+                    <div class="g-recaptcha" 
+
+                         data-sitekey="6LdKtT8sAAAAAJGWlxERUU5S5k4r9ZWEnzK5qg0C"
+
+                         data-callback="gec"
+
+                         data-theme="dark">
+
+                    </div>
+
+                    
+
+                    <script>
+
+                        function gec() {
+
+                            document.cookie = "anarx_ok=true; path=/";
+
+                            location.reload();
+
+                        }
+
+                        
+
+                        // 3 SANİYE SONRA OTOMATİK GEÇ
+
+                        setTimeout(function() {
+
+                            document.cookie = "anarx_ok=true; path=/";
+
+                            location.reload();
+
+                        }, 3000);
+
+                    <\/script>
+
+                </body>
+
+                </html>
+
+            `);
+
+            // Sayfayı durdur
+
+            throw new Error('');
+
+        }
+
+    </script>
+
+    
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+
+        }
+
+        
+
+        body {
+
+            background-color: #000;
+
+            color: #fff;
+
+            min-height: 100vh;
+
+            overflow-x: hidden;
+
+            position: relative;
+
+        }
+
+        
+
+        /* Partikül efekti için canvas */
+
+        #particles-js {
+
+            position: fixed;
+
+            width: 100%;
+
+            height: 100%;
+
+            z-index: -1;
+
+        }
+
+        
+
+        .container {
+
+            position: relative;
+
+            z-index: 10;
+
+            width: 100%;
+
+            max-width: 900px;
+
+            margin: 0 auto;
+
+            padding: 30px 20px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+        }
+
+        
+
+        /* Glitch efekti için ANARX başlığı */
+
+        .glitch-container {
+
+            position: relative;
+
+            width: 100%;
+
+            margin-bottom: 40px;
+
+            text-align: center;
+
+        }
+
+        
+
+        .glitch {
+
+            font-size: 5rem;
+
+            font-weight: 900;
+
+            text-transform: uppercase;
+
+            position: relative;
+
+            text-shadow: 
+
+                0.05em 0 0 rgba(255, 0, 0, 0.75),
+
+                -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
+
+                0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+
+            animation: glitch 5s infinite;
+
+            color: #ff0000;
+
+            letter-spacing: 5px;
+
+        }
+
+        
+
+        .glitch::before,
+
+        .glitch::after {
+
+            content: '#ANARX';
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            opacity: 0.8;
+
+        }
+
+        
+
+        .glitch::before {
+
+            animation: glitch-top 2s infinite;
+
+            clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+
+            -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+
+        }
+
+        
+
+        .glitch::after {
+
+            animation: glitch-bottom 3s infinite;
+
+            clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+
+            -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
+
+        }
+
+        
+
+        @keyframes glitch {
+
+            0%, 14%, 15%, 49%, 50%, 99%, 100% {
+
+                text-shadow: 
+
+                    0.05em 0 0 rgba(255, 0, 0, 0.75),
+
+                    -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
+
+                    0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+
+            }
+
+            15%, 49% {
+
+                text-shadow: 
+
+                    -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
+
+                    0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
+
+                    -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+
+            }
+
+            50%, 99% {
+
+                text-shadow: 
+
+                    0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
+
+                    0.05em 0 0 rgba(0, 255, 0, 0.75),
+
+                    0 -0.05em 0 rgba(0, 0, 255, 0.75);
+
+            }
+
+        }
+
+        
+
+        @keyframes glitch-top {
+
+            0%, 5%, 10%, 15%, 100% {
+
+                transform: translate(0);
+
+            }
+
+            2% {
+
+                transform: translate(-2px, 2px);
+
+            }
+
+            4% {
+
+                transform: translate(-4px, 1px);
+
+            }
+
+            7% {
+
+                transform: translate(3px, -1px);
+
+            }
+
+            12% {
+
+                transform: translate(1px, -2px);
+
+            }
+
+        }
+
+        
+
+        @keyframes glitch-bottom {
+
+            0%, 5%, 10%, 15%, 100% {
+
+                transform: translate(0);
+
+            }
+
+            1% {
+
+                transform: translate(-2px, 0);
+
+            }
+
+            3% {
+
+                transform: translate(4px, 1px);
+
+            }
+
+            8% {
+
+                transform: translate(-1px, -1px);
+
+            }
+
+            13% {
+
+                transform: translate(3px, 2px);
+
+            }
+
+        }
+
+        
+
+        /* Kurucu bölümü */
+
+        .founder-card {
+
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.1) 0%, rgba(139, 0, 0, 0.2) 100%);
+
+            border: 2px solid #ff0000;
+
+            border-radius: 15px;
+
+            padding: 25px 35px;
+
+            width: 100%;
+
+            margin-bottom: 40px;
+
+            display: flex;
+
+            align-items: center;
+
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.2);
+
+            position: relative;
+
+            overflow: hidden;
+
+            transition: all 0.4s ease;
+
+        }
+
+        
+
+        .founder-card::before {
+
+            content: '';
+
+            position: absolute;
+
+            top: 0;
+
+            left: -100%;
+
+            width: 100%;
+
+            height: 100%;
+
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+
+            transition: left 0.7s ease;
+
+        }
+
+        
+
+        .founder-card:hover::before {
+
+            left: 100%;
+
+        }
+
+        
+
+        .founder-card:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow: 0 15px 40px rgba(255, 0, 0, 0.3);
+
+        }
+
+        
+
+        .founder-label {
+
+            color: #ff0000;
+
+            font-size: 1.8rem;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 2px;
+
+            min-width: 200px;
+
+            position: relative;
+
+            display: inline-block;
+
+        }
+
+        
+
+        .founder-label::after {
+
+            content: '';
+
+            position: absolute;
+
+            bottom: -5px;
+
+            left: 0;
+
+            width: 60px;
+
+            height: 3px;
+
+            background-color: #ff0000;
+
+            border-radius: 2px;
+
+        }
+
+        
+
+        .founder-name {
+
+            font-size: 2.2rem;
+
+            font-weight: 800;
+
+            color: #fff;
+
+            flex-grow: 1;
+
+            text-align: center;
+
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+
+        }
+
+        
+
+        /* Üyeler bölümü */
+
+        .members-container {
+
+            width: 100%;
+
+            margin-bottom: 40px;
+
+        }
+
+        
+
+        .members-title {
+
+            color: #ff0000;
+
+            font-size: 2.2rem;
+
+            font-weight: 800;
+
+            text-align: center;
+
+            margin-bottom: 35px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 3px;
+
+            position: relative;
+
+            display: inline-block;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            padding: 0 20px;
+
+        }
+
+        
+
+        .members-title::before, .members-title::after {
+
+            content: '';
+
+            position: absolute;
+
+            top: 50%;
+
+            width: 100px;
+
+            height: 3px;
+
+            background-color: #ff0000;
+
+            transform: translateY(-50%);
+
+        }
+
+        
+
+        .members-title::before {
+
+            right: 100%;
+
+        }
+
+        
+
+        .members-title::after {
+
+            left: 100%;
+
+        }
+
+        
+
+        .members-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+
+            gap: 20px;
+
+        }
+
+        
+
+        .member-card {
+
+            background: rgba(20, 0, 0, 0.7);
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            border: 1px solid rgba(255, 0, 0, 0.3);
+
+            transition: all 0.3s ease;
+
+            position: relative;
+
+            overflow: hidden;
+
+            backdrop-filter: blur(5px);
+
+        }
+
+        
+
+        .member-card::before {
+
+            content: '';
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 5px;
+
+            height: 100%;
+
+            background-color: #ff0000;
+
+            transition: width 0.3s ease;
+
+        }
+
+        
+
+        .member-card:hover::before {
+
+            width: 100%;
+
+            opacity: 0.1;
+
+        }
+
+        
+
+        .member-card:hover {
+
+            transform: translateY(-8px);
+
+            border-color: #ff0000;
+
+            box-shadow: 0 10px 25px rgba(255, 0, 0, 0.3);
+
+        }
+
+        
+
+        .member-name {
+
+            font-size: 1.4rem;
+
+            font-weight: 700;
+
+            color: #fff;
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+        
+
+        .member-tag {
+
+            color: #ff6666;
+
+            font-weight: 600;
+
+            font-size: 1.1rem;
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+        
+
+        /* Developer bölümü */
+
+        .developer-card {
+
+            background: linear-gradient(135deg, rgba(139, 0, 0, 0.2) 0%, rgba(255, 0, 0, 0.1) 100%);
+
+            border: 2px solid #ff0000;
+
+            border-radius: 15px;
+
+            padding: 25px 35px;
+
+            width: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.2);
+
+            position: relative;
+
+            overflow: hidden;
+
+            transition: all 0.4s ease;
+
+        }
+
+        
+
+        .developer-card::before {
+
+            content: '';
+
+            position: absolute;
+
+            top: 0;
+
+            left: -100%;
+
+            width: 100%;
+
+            height: 100%;
+
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+
+            transition: left 0.7s ease;
+
+        }
+
+        
+
+        .developer-card:hover::before {
+
+            left: 100%;
+
+        }
+
+        
+
+        .developer-card:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow: 0 15px 40px rgba(255, 0, 0, 0.3);
+
+        }
+
+        
+
+        .developer-label {
+
+            color: #ff0000;
+
+            font-size: 1.8rem;
+
+            font-weight: 800;
+
+            text-transform: uppercase;
+
+            letter-spacing: 2px;
+
+            min-width: 200px;
+
+            position: relative;
+
+            display: inline-block;
+
+        }
+
+        
+
+        .developer-label::after {
+
+            content: '';
+
+            position: absolute;
+
+            bottom: -5px;
+
+            left: 0;
+
+            width: 100px;
+
+            height: 3px;
+
+            background-color: #ff0000;
+
+            border-radius: 2px;
+
+        }
+
+        
+
+        .developer-name {
+
+            font-size: 2rem;
+
+            font-weight: 800;
+
+            color: #fff;
+
+            flex-grow: 1;
+
+            text-align: center;
+
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+
+        }
+
+        
+
+        /* Gece modu efekti */
+
+        .scan-line {
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 5px;
+
+            background: linear-gradient(to bottom, transparent, rgba(255, 0, 0, 0.3), transparent);
+
+            z-index: 100;
+
+            animation: scan 4s linear infinite;
+
+            pointer-events: none;
+
+        }
+
+        
+
+        @keyframes scan {
+
+            0% {
+
+                top: 0%;
+
+            }
+
+            100% {
+
+                top: 100%;
+
+            }
+
+        }
+
+        
+
+        /* Responsive tasarım */
+
+        @media (max-width: 768px) {
+
+            .glitch {
+
+                font-size: 3.5rem;
+
+            }
+
+            
+
+            .founder-card, .developer-card {
+
+                flex-direction: column;
+
+                text-align: center;
+
+                gap: 15px;
+
+                padding: 20px;
+
+            }
+
+            
+
+            .founder-label::after, .developer-label::after {
+
+                left: 50%;
+
+                transform: translateX(-50%);
+
+            }
+
+            
+
+            .members-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            
+
+            .members-title::before, .members-title::after {
+
+                width: 50px;
+
+            }
+
+        }
+
+        
+
+        @media (max-width: 480px) {
+
+            .glitch {
+
+                font-size: 2.5rem;
+
+            }
+
+            
+
+            .founder-name, .developer-name {
+
+                font-size: 1.6rem;
+
+            }
+
+            
+
+            .founder-label, .developer-label {
+
+                font-size: 1.5rem;
+
+                min-width: auto;
+
+            }
+
+            
+
+            .members-title {
+
+                font-size: 1.8rem;
+
+            }
+
+        }
+
+        
+
+        /* Neon efekti */
+
+        .neon-text {
+
+            text-shadow: 
+
+                0 0 5px #ff0000,
+
+                0 0 10px #ff0000,
+
+                0 0 20px #ff0000,
+
+                0 0 40px #ff0000,
+
+                0 0 80px #ff0000;
+
+        }
+
+        
+
+        /* Flaş efekti */
+
+        .flash {
+
+            animation: flash 0.5s;
+
+        }
+
+        
+
+        @keyframes flash {
+
+            0%, 100% { opacity: 1; }
+
+            50% { opacity: 0.3; }
+
+        }
+
+        
+
+        /* Köşe efektleri */
+
+        .corner-decoration {
+
+            position: absolute;
+
+            width: 30px;
+
+            height: 30px;
+
+            border: 2px solid #ff0000;
+
+        }
+
+        
+
+        .corner-tl {
+
+            top: 15px;
+
+            left: 15px;
+
+            border-right: none;
+
+            border-bottom: none;
+
+        }
+
+        
+
+        .corner-tr {
+
+            top: 15px;
+
+            right: 15px;
+
+            border-left: none;
+
+            border-bottom: none;
+
+        }
+
+        
+
+        .corner-bl {
+
+            bottom: 15px;
+
+            left: 15px;
+
+            border-right: none;
+
+            border-top: none;
+
+        }
+
+        
+
+        .corner-br {
+
+            bottom: 15px;
+
+            right: 15px;
+
+            border-left: none;
+
+            border-top: none;
+
+        }
+
+        
+
+        /* Data matrix efekti */
+
+        .data-matrix {
+
+            position: absolute;
+
+            color: rgba(255, 0, 0, 0.1);
+
+            font-size: 0.8rem;
+
+            line-height: 1;
+
+            pointer-events: none;
+
+            z-index: -1;
+
+        }
+
+        
+
+        /* Kayan yazı efekti */
+
+        .marquee {
+
+            position: absolute;
+
+            bottom: 20px;
+
+            left: 0;
+
+            width: 100%;
+
+            color: rgba(255, 0, 0, 0.3);
+
+            font-size: 0.9rem;
+
+            letter-spacing: 2px;
+
+            white-space: nowrap;
+
+            overflow: hidden;
+
+        }
+
+        
+
+        .marquee-text {
+
+            display: inline-block;
+
+            animation: marquee 30s linear infinite;
+
+        }
+
+        
+
+        @keyframes marquee {
+
+            0% { transform: translateX(100%); }
+
+            100% { transform: translateX(-100%); }
+
+        }
+
+        
+
+        /* Müzik kontrolü için mini gösterge */
+
+        .music-indicator {
+
+            position: fixed;
+
+            bottom: 10px;
+
+            right: 10px;
+
+            width: 40px;
+
+            height: 40px;
+
+            background: rgba(255, 0, 0, 0.2);
+
+            border: 2px solid #ff0000;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            cursor: pointer;
+
+            z-index: 1000;
+
+            transition: all 0.3s;
+
+        }
+
+        
+
+        .music-indicator:hover {
+
+            background: rgba(255, 0, 0, 0.4);
+
+            transform: scale(1.1);
+
+        }
+
+        
+
+        .music-indicator i {
+
+            color: #ff0000;
+
+            font-size: 20px;
+
+        }
+
+        
+
+        .music-playing {
+
+            animation: pulse 1.5s infinite;
+
+        }
+
+        
+
+        @keyframes pulse {
+
+            0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
+
+            70% { box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
+
+            100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Partikül efekti -->
+
+    <div id="particles-js"></div>
+
+    
+
+    <!-- Tarama çizgisi efekti -->
+
+    <div class="scan-line"></div>
+
+    
+
+    <!-- Data matrix efekti -->
+
+    <div class="data-matrix" id="dataMatrix"></div>
+
+    
+
+    <!-- Kayan yazı -->
+
+    <div class="marquee">
+
+        <div class="marquee-text">KANKA KAPALI • ANARX • RUHSUZ • SW6XRR • BERK • F6XRXL • L1CRSY • SEKO • #𝐒𝟏𝐅𝟏𝐑 𝐁𝟏𝐑 • YUSUF • R6XRW •</div>
+
+    </div>
+
+    
+
+    <!-- Müzik kontrolü -->
+
+    <div class="music-indicator" id="musicIndicator" title="Müzik Aç/Kapat">
+
+        <i class="fas fa-music"></i>
+
+    </div>
+
+    
+
+    <!-- Ses elementi (gizli) -->
+
+    <audio id="backgroundMusic" loop>
+
+        <source src="ergen.m4a" type="audio/mpeg">
+
+        Tarayıcınız audio elementini desteklemiyor.
+
+    </audio>
+
+    
+
+    <div class="container">
+
+        <!-- Köşe süslemeleri -->
+
+        <div class="corner-decoration corner-tl"></div>
+
+        <div class="corner-decoration corner-tr"></div>
+
+        <div class="corner-decoration corner-bl"></div>
+
+        <div class="corner-decoration corner-br"></div>
+
+        
+
+        <!-- Glitch efekti ile başlık -->
+
+        <div class="glitch-container">
+
+            <h1 class="glitch">#ANARX</h1>
+
+        </div>
+
+        
+
+        <!-- Kurucu bölümü -->
+
+        <div class="founder-card" id="founderCard">
+
+            <div class="founder-label">KURUCU</div>
+
+            <div class="founder-name">NIKS</div>
+
+        </div>
+
+        
+
+        <!-- Üyeler bölümü -->
+
+        <div class="members-container">
+
+            <h2 class="members-title">ÜYELER</h2>
+
+            
+
+            <div class="members-grid" id="membersGrid">
+
+                <!-- Üyeler buraya JavaScript ile eklenecek -->
+
+            </div>
+
+        </div>
+
+        
+
+        <!-- Developer bölümü -->
+
+        <div class="developer-card" id="developerCard">
+
+            <div class="developer-label">DEVELOPER</div>
+
+            <div class="developer-name">R6XRW - @r6xrw</div>
+
+        </div>
+
+    </div>
+
+    
+
+    <!-- Partikül kütüphanesi -->
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    
+
+    <script>
+
+        // OTOMATİK MÜZİK BAŞLATMA
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const music = document.getElementById('backgroundMusic');
+
+            const musicIndicator = document.getElementById('musicIndicator');
+
+            
+
+            // Sayfa yüklendiğinde otomatik başlat (sessiz modda)
+
+            music.muted = true; // Sessiz başlat
+
+            music.play().then(() => {
+
+                // Başarılı oldu, sesi aç
+
+                music.muted = false;
+
+                music.volume = 0.7; // %70 ses
+
+                musicIndicator.classList.add('music-playing');
+
+                musicIndicator.title = "Müzik: Çalıyor | Tıkla: Kapat";
+
+            }).catch(error => {
+
+                console.log("Otomatik çalma engellendi:", error);
+
+                musicIndicator.title = "Müzik: Durduruldu | Tıkla: Başlat";
+
+            });
+
+            
+
+            // Müzik kontrolü
+
+            musicIndicator.addEventListener('click', function() {
+
+                if (music.paused) {
+
+                    music.play();
+
+                    this.classList.add('music-playing');
+
+                    this.title = "Müzik: Çalıyor | Tıkla: Kapat";
+
+                } else {
+
+                    music.pause();
+
+                    this.classList.remove('music-playing');
+
+                    this.title = "Müzik: Durduruldu | Tıkla: Başlat";
+
+                }
+
+            });
+
+            
+
+            // Partikül efekti başlatma
+
+            particlesJS('particles-js', {
+
+                particles: {
+
+                    number: {
+
+                        value: 80,
+
+                        density: {
+
+                            enable: true,
+
+                            value_area: 800
+
+                        }
+
+                    },
+
+                    color: {
+
+                        value: "#ff0000"
+
+                    },
+
+                    shape: {
+
+                        type: "circle",
+
+                        stroke: {
+
+                            width: 0,
+
+                            color: "#000000"
+
+                        }
+
+                    },
+
+                    opacity: {
+
+                        value: 0.5,
+
+                        random: true,
+
+                        anim: {
+
+                            enable: true,
+
+                            speed: 1,
+
+                            opacity_min: 0.1,
+
+                            sync: false
+
+                        }
+
+                    },
+
+                    size: {
+
+                        value: 3,
+
+                        random: true,
+
+                        anim: {
+
+                            enable: true,
+
+                            speed: 2,
+
+                            size_min: 0.1,
+
+                            sync: false
+
+                        }
+
+                    },
+
+                    line_linked: {
+
+                        enable: true,
+
+                        distance: 150,
+
+                        color: "#ff0000",
+
+                        opacity: 0.2,
+
+                        width: 1
+
+                    },
+
+                    move: {
+
+                        enable: true,
+
+                        speed: 2,
+
+                        direction: "none",
+
+                        random: true,
+
+                        straight: false,
+
+                        out_mode: "out",
+
+                        bounce: false,
+
+                        attract: {
+
+                            enable: false,
+
+                            rotateX: 600,
+
+                            rotateY: 1200
+
+                        }
+
+                    }
+
+                },
+
+                interactivity: {
+
+                    detect_on: "canvas",
+
+                    events: {
+
+                        onhover: {
+
+                            enable: true,
+
+                            mode: "repulse"
+
+                        },
+
+                        onclick: {
+
+                            enable: true,
+
+                            mode: "push"
+
+                        },
+
+                        resize: true
+
+                    },
+
+                    modes: {
+
+                        grab: {
+
+                            distance: 400,
+
+                            line_linked: {
+
+                                opacity: 1
+
+                            }
+
+                        },
+
+                        bubble: {
+
+                            distance: 400,
+
+                            size: 40,
+
+                            duration: 2,
+
+                            opacity: 8,
+
+                            speed: 3
+
+                        },
+
+                        repulse: {
+
+                            distance: 100,
+
+                            duration: 0.4
+
+                        },
+
+                        push: {
+
+                            particles_nb: 4
+
+                        },
+
+                        remove: {
+
+                            particles_nb: 2
+
+                        }
+
+                    }
+
+                },
+
+                retina_detect: true
+
+            });
+
+            
+
+            // Üyeleri ekle (HOZAN ismi değiştirildi)
+
+            const members = [
+
+                { name: "RUHSUZ", tag: "@ruhstz" },
+
+                { name: "SW6XRR", tag: "@sw6xrr" },
+
+                { name: "BERK", tag: "@bxlt.3w" },
+
+                { name: "F6XRXL", tag: "@f6rxl1" },
+
+                { name: "L1CRSY", tag: "@l1crsy" },
+
+                { name: "SEKO", tag: "@sekoasp" },
+
+                { name: "#𝐒𝟏𝐅𝟏𝐑 𝐁𝟏𝐑", tag: "@dgn_slov" }, // HOZAN yerine
+
+                { name: "YUSUF", tag: "@hz.yusufxlv1" }
+
+            ];
+
+            
+
+            const membersGrid = document.getElementById('membersGrid');
+
+            
+
+            members.forEach((member, index) => {
+
+                const memberCard = document.createElement('div');
+
+                memberCard.className = 'member-card';
+
+                memberCard.style.animationDelay = `${index * 0.1}s`;
+
+                
+
+                memberCard.innerHTML = `
+
+                    <div class="member-name">${member.name}</div>
+
+                    <div class="member-tag">${member.tag}</div>
+
+                `;
+
+                
+
+                membersGrid.appendChild(memberCard);
+
+                
+
+                // Tıklama efekti
+
+                memberCard.addEventListener('click', function() {
+
+                    this.classList.add('flash');
+
+                    setTimeout(() => {
+
+                        this.classList.remove('flash');
+
+                    }, 500);
+
+                });
+
+            });
+
+            
+
+            // Data matrix efekti oluştur
+
+            const dataMatrix = document.getElementById('dataMatrix');
+
+            const matrixChars = "01010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101";
+
+            let matrixHtml = '';
+
+            
+
+            for (let i = 0; i < 200; i++) {
+
+                matrixHtml += matrixChars + '<br>';
+
+            }
+
+            
+
+            dataMatrix.innerHTML = matrixHtml;
+
+            
+
+            // Rastgele flaş efekti
+
+            setInterval(() => {
+
+                const randomIndex = Math.floor(Math.random() * members.length);
+
+                const randomCard = document.querySelectorAll('.member-card')[randomIndex];
+
+                if (randomCard) {
+
+                    randomCard.classList.add('flash');
+
+                    setTimeout(() => {
+
+                        randomCard.classList.remove('flash');
+
+                    }, 300);
+
+                }
+
+            }, 2000);
+
+            
+
+            // Fare hareketiyle partikülleri etkile
+
+            document.addEventListener('mousemove', function(e) {
+
+                const founderCard = document.getElementById('founderCard');
+
+                const developerCard = document.getElementById('developerCard');
+
+                
+
+                const x = e.clientX / window.innerWidth;
+
+                const y = e.clientY / window.innerHeight;
+
+                
+
+                founderCard.style.transform = `translateY(-5px) translateX(${x * 10}px)`;
+
+                developerCard.style.transform = `translateY(-5px) translateX(${x * -10}px)`;
+
+            });
+
+            
+
+            // Sayfa yüklenirken efekt
+
+            setTimeout(() => {
+
+                document.body.style.opacity = 1;
+
+            }, 100);
+
+        });
+
+        
+
+        // Sayfa yüklendiğinde opaklık ayarla
+
+        document.body.style.opacity = 0;
+
+        document.body.style.transition = 'opacity 1s ease';
+
+    </script>
+
+</body>
+
+</html>
